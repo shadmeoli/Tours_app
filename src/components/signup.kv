@@ -1,0 +1,171 @@
+MDScreen:
+    # the name of this screen to help with call_backs
+    name: "signup"
+
+    # adding a different layer to allow better customization
+    MDFloatLayout:
+        md_bg_color: (226/255, 226/255, 226/255, 255)   # rgba(226, 226, 226, 1)
+
+        # a layer layout to hold the logo and welcome text
+        MDFloatLayout:
+            size_hint: .5, .5
+            pos_hint: {"center_x": .5, "center_y": .85}
+
+            Image:
+                size_hint: .5, .5
+                source: 'assets/form_logo.png'
+                pos_hint: {"center_x": .5, "center_y": .7}
+
+            MDLabel:
+                text: "Welcome!"
+                font_name: 'Poppins'
+                font_size: "32sp"
+                theme_text_color: "Custom"
+                color: (2/255, 70/255, 80/255, 200/255)
+                pos_hint: {"center_x": .55, "center_y": .5}
+
+        # a button to go back if user decides to
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {'center_y': .05}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            color: (2/255,70/255,80/255,255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current="startscreen"
+            canvas.before:
+                Color:
+                    rgb: rgba(2, 70, 80, 1)
+
+        # username text field
+        MDFloatLayout:
+            # md_bg_color: 1,1,1,1
+            size_hint: .9, .062
+            pos_hint: {"center_x": .5, "center_y": .65}
+
+            MDTextField:
+                id: "text_filed"
+                line_color: (2/255, 70/255, 80/255, 200/255)
+                spacing: "20dp"
+                adaptive_height: True
+                hint_text: "username"
+                mode: "fill"
+                radius: [5]
+                background_color: (2/255, 70/255, 80/255, 200/255)
+                theme_text_color: "custom"
+                text_color: "white"
+                pos_hint: {"center_x": .5, "center_y": .65}
+                line_anim: True
+                text_color_focus: '#024650'
+                text_color_normal: '#024650'
+                helper_text_color_normal: '#024650'
+                helper_text_color_focus: '#024650'
+                hint_text_color_normal: '#024650'
+                hint_text_color_focus: '#024650'
+
+        # email text field
+        MDFloatLayout:
+            # md_bg_color: 1,1,1,1
+            size_hint: .9, .062
+            pos_hint: {"center_x": .5, "center_y": .55}
+
+            MDTextField:
+                id: "text_filed"
+                line_color_normal: rgba(0, 212, 126, 1)
+                spacing: "20dp"
+                adaptive_height: True
+                hint_text: "email"
+                text_color_normal: "gray"
+                text_color_normal_focus: "white"
+                mode: "fill"
+                radius: [4]
+                background_color: 1,1,1,1
+                theme_text_color: "custom"
+                hint_text_color: "white"
+                pos_hint: {"center_x": .5, "center_y": .65}
+                line_anim: True
+                text_color_focus: '#024650'
+                text_color_normal: '#024650'
+                helper_text_color_normal: '#024650'
+                helper_text_color_focus: '#024650'
+                hint_text_color_normal: '#024650'
+                hint_text_color_focus: '#024650'
+
+        # password text field
+        MDFloatLayout:
+            size_hint: .9, .062
+            pos_hint: {"center_x": .5, "center_y": .45}
+
+            MDTextField:
+                id: "text_filed"
+                line_color_normal: "white"
+                mode: "fill"
+                radius: [4]
+                spacing: "10dp"
+                background_color: 1,1,1,1
+                pos_hint: {"center_x": .5, "center_y": .65}
+                hint_text: "password"
+                adaptive_height: True
+                text_color_focus: '#024650'
+                text_color_normal: '#024650'
+                helper_text_color_normal: '#024650'
+                helper_text_color_focus: '#024650'
+                hint_text_color_normal: '#024650'
+                hint_text_color_focus: '#024650'
+                line_anim: True
+                password: True
+
+        # password confirmation text field
+        MDFloatLayout:
+            size_hint: .9, .062
+            pos_hint: {"center_x": .5, "center_y": .35}
+
+            MDTextField:
+                id: "text_filed"
+                line_color_normal: "white"
+                mode: "fill"
+                radius: [4]
+                spacing: "20dp"
+                adaptive_height: True
+                hint_text: "confirm password"
+                background_color: 1,1,1,1
+                line_text_color_normal: "white"
+                pos_hint: {"center_x": .5, "center_y": .65}
+                text_color_focus: '#024650'
+                text_color_normal: '#024650'
+                helper_text_color_normal: '#024650'
+                helper_text_color_focus: '#024650'
+                hint_text_color_normal: '#024650'
+                hint_text_color_focus: '#024650'
+                line_anim: True
+                password: True
+
+        # """
+        #     The submitt button to send call backs.
+
+        #     [TODO] -> Attach a call back function to capture user data
+        # """
+        Button:
+            text: "sign up"
+            background_color: 0,0,0,0
+            font_name: "Roboto"
+            font_size: "14sp"
+            theme_text_color: "custom"
+            color: ('#00D47E')
+            size_hint: (.5, .065)
+            pos_hint: {'center_x': .5, 'center_y': .2}
+            elevation: 4.5
+            # redirect
+            on_release: 
+                print('{"username" : "entered_user", "email": "usermail", "pass":"userpassword"}')
+                root.manager.transition.direction = "left"
+                root.manager.current="interests"
+            canvas.before:
+                Color: 
+                    rgb: rgba(2, 70, 80, 1)
+                
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [5]

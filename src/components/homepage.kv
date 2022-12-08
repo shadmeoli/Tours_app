@@ -1,0 +1,25 @@
+MDScreen:
+    name: "homepage"
+
+    MDFloatLayout:
+        md_bg_color: (2/255,70/255,80/255,255)  #rgba(2, 70, 80, 1)
+
+        MDFloatLayout:
+            size_hint: .5, .5
+            pos_hint: {"center_x": .65, "center_y": .5}
+
+        MDLabel:
+            text: "Tours Home Page"
+            font_name: 'Poppins'
+            font_size: "24sp"
+            theme_text_color: "Custom"
+            color: (210/255, 210/255, 210/255, 255/255)
+            pos_hint: {"center_x": .75, "center_y": .5}
+
+        MDFloatLayout:
+            size_hint: .5, .5
+            pos_hint: {"center_x": .5, "center_y": .6}
+
+            Image:
+                source: 'assets/logo.png'
+                pos_hint: {"center_x": .5, "center_y": .5}

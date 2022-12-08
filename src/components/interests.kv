@@ -1,0 +1,121 @@
+# """
+# 	This file is to help capture data on the user for better recommendation.
+# 	Follow the design to style the page
+# """
+
+MDScreen:
+
+    name: "interests"
+
+    MDFloatLayout:
+        md_bg_color: '#024650'   # rgba(226, 226, 226, 1)
+
+        MDFloatLayout:
+            size_hint_y: .5
+            size_hint_x: .9
+            pos_hint: {"center_x": .48, "center_y": .8}
+
+            Image:
+                size_hint: .2, .2
+                source: 'assets/logo.png'
+                pos_hint: {"center_x": .15, "center_y": .64}
+
+            MDLabel:
+                text: "Pick your interests"
+                font_name: 'Poppins'
+                font_size: "16sp"
+                theme_text_color: "Custom"
+                color: 1, 1, 1, 1
+                pos_hint: {"center_x": .55, "center_y": .5}
+
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {'center_x': .1, 'center_y': .05}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            # color: '#00D47E'
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current="signup"
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 212, 126, 1)
+
+        MDIconButton:
+            icon: "arrow-right"
+            pos_hint: {'center_x': .9, 'center_y': .05}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            # color: '#00D47E'
+            on_release:
+                print("{'instrest' : '[sfg, asdg, asfg, dfg]'}")
+                root.manager.transition.direction = "left"
+                root.manager.current="homepage"
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 212, 126, 1)
+
+
+        MDTextField:
+            mode: "fill"
+            md_bg_color: '#D9D9D9'
+            size_hint: .9, .1
+            pos_hint: {"center_x": .5, "center_y": .7}
+            radius: [10]
+
+
+
+		MDCard:
+			md_bg_color: '#D9D9D9'
+			size_hint: .35, .15
+			pos_hint: {"center_x": .25, "center_y": .55}
+			radius: [10]
+            Image:
+                size_hint: .35, .85
+                source: 'assets/urban.png'
+                pos_hint: {"center_x": .5, "center_y": .5}
+                
+                MDTextButton:
+                    text: "Urban"
+                    # halign: "center"
+                    on_release: print("Urban interest")
+                    pos_hint: {"center_x" : .8, "center_y" : .5}
+
+			# Image:
+			# 	source: 'assets/urban.jpg'
+
+		MDCard:
+			md_bg_color: '#D9D9D9'
+			size_hint: .35, .15
+			pos_hint: {"center_x": .75, "center_y": .55}
+			radius: [10]
+
+			# Image:
+			# 	source: 'assets/urban.jpg'
+
+		MDCard:
+			md_bg_color: '#D9D9D9'
+			size_hint: .35, .15
+			pos_hint: {"center_x": .25, "center_y": .35}
+			radius: [10]
+
+			# Image:
+			# 	source: 'assets/urban.jpg'
+
+		MDCard:
+			md_bg_color: '#D9D9D9'
+			size_hint: .35, .15
+			pos_hint: {"center_x": .75, "center_y": .35}
+			radius: [10]
+
+			# Image:
+			# 	source: 'assets/urban.jpg'
+
+		MDCard:
+			md_bg_color: '#D9D9D9'
+			size_hint: .35, .15
+			pos_hint: {"center_x": .5, "center_y": .16}
+			radius: [10]
+
+			# Image:
+			# 	source: 'assets/urban.jpg'

@@ -1,0 +1,70 @@
+# """
+#     I have finished on this page 
+# """
+MDScreen:
+    name: "startscreen"
+
+    MDFloatLayout:
+        md_bg_color: (2/255,70/255,80/255,255)  #rgba(2, 70, 80, 1)
+
+        MDFloatLayout:
+            size_hint: .5, .5
+            pos_hint: {"center_x": .65, "center_y": .5}
+
+            MDLabel:
+                text: "Jobs fill your pocket, adventure fills your soul."
+                font_name: 'Poppins'
+                font_size: "14sp"
+                color: (210/255, 210/255, 210/255, 255/255)
+                pos_hint: {"center_x": .03, "center_y": .5}
+
+        MDFloatLayout:
+            size_hint: .5, .5
+            pos_hint: {"center_x": .5, "center_y": .6}
+
+            Image:
+                size_hint: .5, .5
+                source: 'assets/logo.png'
+                pos_hint: {"center_x": .1, "center_y": .7}
+
+        Button:
+            text: "sign in"
+            background_color: 0,0,0,0
+            font_name: "Roboto"
+            font_size: "12sp"
+            theme_text_color: "custom"
+            text_color: 1,1,1,1
+            size_hint: (.5, .055)
+            pos_hint: {'center_x': .5, 'center_y': .1}
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current="signin"
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 212, 126, 1)
+                
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [5]
+
+        Button:
+            text: "sign up"
+            background_color: 0,0,0,0
+            font_name: "Roboto"
+            font_size: "12sp"
+            theme_text_color: "custom"
+            text_color: 1,1,1,1
+            size_hint: (.5, .045)
+            pos_hint: {'center_x': .5, 'center_y': .2}
+            # redirect
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current="signup"
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 212, 126, 1)
+                
+                Line:
+                    width: 1.2
+                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
