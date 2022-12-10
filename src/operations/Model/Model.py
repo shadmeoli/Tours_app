@@ -3,6 +3,8 @@
 		- I will be defining here the model files
 		- also the auth file
 """
+import sys, os
+# sys.path.append('/home/meoli/Desktop/traveling-recommender')
 import json
 
 # authentication setup
@@ -19,14 +21,14 @@ from rich.console import Console
 
 
 # schem defination
-from schema import Registration, UserSignin
+from .schema import Registration, UserSignin # for app running
+# from schema import Registration, UserSignin # for file running
 
 
 cons = Console()
 
 # connection to the application
-cred = credentials.Certificate(
-    "tours-eb670-firebase-adminsdk-ky8ly-946c723b7e.json")
+cred = credentials.Certificate("src/operations/tours-eb670-firebase-adminsdk-ky8ly-946c723b7e.json")
 firebase_admin.initialize_app(cred)
 database = firestore.client()
 
@@ -89,9 +91,14 @@ class UserAuthentication():
         value = details["username"]
 
         if self.in_database(details):
-            return user_query["intrests"]
-        else:
-            raise NoSuchUSer(value=value, message="Invalid uer credentials")
+
+            try:
+                if len(user_query["intrests"]) >= 5:
+                    return {"status" : 200,  "intrests" : user_query["intrests"]}
+            
+            except Exception as e:
+                if Exception == KeyError:
+                    return False            
     
     
     # user sign in authentication from firebase
@@ -101,13 +108,22 @@ class UserAuthentication():
         user_query = self.database_query(user)
         
         if self.in_database(details) == False:
+            
             new_user = database.collection(u'Users').document(u'{}'.format(user))
             new_user.set(details, merge=True)
-            return {
-                "Data_added" : details
-            }
+            
+            return 200
+
         else:
-            raise NoSuchUSer(value=user, message="user already exists")
+            return 400
+    
+    # user intrests update
+    def user_intrests(self, username:str, intrests: list):
+
+        doc_ref.update({
+            "intrests" : intrests
+        })
+
 
 if __name__ == '__main__':
     values = {
@@ -122,12 +138,19 @@ if __name__ == '__main__':
             "park",
         ]
     }
+    
+    values2 = {
+        "username": "Meolishad",
+        "email": "shad.thee@yahoo.com",
+        "password": "ABcd12#$"
+    }
+
 
     _auth = UserAuthentication()
 
-    user_login_auth = _auth.user_signup_auth(values)
+    user_signup_auth = _auth.user_signup_auth(values2)
 
     try:
-        cons.log(user_login_auth)
+        cons.log(user_signup_auth)
     except Exception as e:
         cons.log(e)

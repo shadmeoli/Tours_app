@@ -42,11 +42,11 @@ MDScreen:
             pos_hint: {"center_x": .5, "center_y": .55}
 
             MDTextField:
-                id: "text_filed"
+                id: username
                 line_color_normal: rgba(0, 212, 126, 1)
                 spacing: "20dp"
                 adaptive_height: True
-                hint_text: "email"
+                hint_text: "username"
                 text_color_normal: "gray"
                 text_color_normal_focus: "white"
                 mode: "fill"
@@ -55,13 +55,15 @@ MDScreen:
                 theme_text_color: "custom"
                 hint_text_color: "white"
                 pos_hint: {"center_x": .5, "center_y": .65}
-                line_anim: True
                 text_color_focus: '#024650'
                 text_color_normal: '#024650'
                 helper_text_color_normal: '#024650'
                 helper_text_color_focus: '#024650'
                 hint_text_color_normal: '#024650'
                 hint_text_color_focus: '#024650'
+                line_anim: True
+                required: True
+                reqired_color: '#024650'
 
 
         MDFloatLayout:
@@ -69,7 +71,7 @@ MDScreen:
             pos_hint: {"center_x": .5, "center_y": .45}
 
             MDTextField:
-                id: "text_filed"
+                id: password
                 line_color_normal: "white"
                 mode: "fill"
                 radius: [4]
@@ -87,6 +89,8 @@ MDScreen:
                 hint_text_color_focus: '#024650'
                 line_anim: True
                 password: True
+                required: True
+                reqired_color: '#024650'
 
         # """ 
         #     [TODO] -> Create a call back function to capture the data entered on the text field by user,
@@ -104,8 +108,8 @@ MDScreen:
             elevation: 4.5
             # redirect
             on_release:
-                root.manager.transition.direction = "left"
-                root.manager.current="homepage"
+                if app.user_signin(username.text, password.text) == True: root.manager.current="homepage", 
+                if app.user_signin(username.text, password.text) == False: root.manager.current="interests"
             canvas.before:
                 Color: 
                     rgb: rgba(2, 70, 80, 1)

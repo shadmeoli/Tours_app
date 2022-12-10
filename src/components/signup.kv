@@ -1,3 +1,25 @@
+# the custom snackbar
+<CustomSnackbar>
+
+    MDIconButton:
+        pos_hint: {'center_y': .5}
+        icon: root.icon
+        opposite_colors: True
+
+    MDLabel:
+        id: password_error
+        size_hint_y: None
+        height: self.texture_size[1]
+        text: root.text
+        font_size: root.font_size
+        theme_text_color: 'Custom'
+        text_color: '#00D47E'
+        shorten: True
+        shorten_from: 'right'
+        pos_hint: {'center_y': .5}
+
+
+
 MDScreen:
     # the name of this screen to help with call_backs
     name: "signup"
@@ -45,7 +67,7 @@ MDScreen:
             pos_hint: {"center_x": .5, "center_y": .65}
 
             MDTextField:
-                id: "text_filed"
+                id: username
                 line_color: (2/255, 70/255, 80/255, 200/255)
                 spacing: "20dp"
                 adaptive_height: True
@@ -56,13 +78,14 @@ MDScreen:
                 theme_text_color: "custom"
                 text_color: "white"
                 pos_hint: {"center_x": .5, "center_y": .65}
-                line_anim: True
                 text_color_focus: '#024650'
                 text_color_normal: '#024650'
                 helper_text_color_normal: '#024650'
                 helper_text_color_focus: '#024650'
                 hint_text_color_normal: '#024650'
                 hint_text_color_focus: '#024650'
+                required: True
+                line_anim: True
 
         # email text field
         MDFloatLayout:
@@ -71,7 +94,7 @@ MDScreen:
             pos_hint: {"center_x": .5, "center_y": .55}
 
             MDTextField:
-                id: "text_filed"
+                id: email
                 line_color_normal: rgba(0, 212, 126, 1)
                 spacing: "20dp"
                 adaptive_height: True
@@ -84,13 +107,14 @@ MDScreen:
                 theme_text_color: "custom"
                 hint_text_color: "white"
                 pos_hint: {"center_x": .5, "center_y": .65}
-                line_anim: True
                 text_color_focus: '#024650'
                 text_color_normal: '#024650'
                 helper_text_color_normal: '#024650'
                 helper_text_color_focus: '#024650'
                 hint_text_color_normal: '#024650'
                 hint_text_color_focus: '#024650'
+                line_anim: True
+                required: True
 
         # password text field
         MDFloatLayout:
@@ -98,7 +122,7 @@ MDScreen:
             pos_hint: {"center_x": .5, "center_y": .45}
 
             MDTextField:
-                id: "text_filed"
+                id: password
                 line_color_normal: "white"
                 mode: "fill"
                 radius: [4]
@@ -115,6 +139,7 @@ MDScreen:
                 hint_text_color_focus: '#024650'
                 line_anim: True
                 password: True
+                required: True
 
         # password confirmation text field
         MDFloatLayout:
@@ -122,7 +147,7 @@ MDScreen:
             pos_hint: {"center_x": .5, "center_y": .35}
 
             MDTextField:
-                id: "text_filed"
+                id: confirm_password
                 line_color_normal: "white"
                 mode: "fill"
                 radius: [4]
@@ -140,6 +165,7 @@ MDScreen:
                 hint_text_color_focus: '#024650'
                 line_anim: True
                 password: True
+                required: True
 
         # """
         #     The submitt button to send call backs.
@@ -157,10 +183,8 @@ MDScreen:
             pos_hint: {'center_x': .5, 'center_y': .2}
             elevation: 4.5
             # redirect
-            on_release: 
-                print('{"username" : "entered_user", "email": "usermail", "pass":"userpassword"}')
-                root.manager.transition.direction = "left"
-                root.manager.current="interests"
+            on_release:
+                if app.user_registration(username.text, email.text, password.text, confirm_password.text) == True: root.manager.current="interests"
             canvas.before:
                 Color: 
                     rgb: rgba(2, 70, 80, 1)

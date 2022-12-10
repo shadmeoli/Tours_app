@@ -26,36 +26,43 @@ from pydantic import Field, EmailStr
 console = Console()
 
 
-# user interests
-class Interests(str, Enum):
+# a list of all user interests
+INTRESTS = [
+	"churches",
+	"resorts",
+	"beaches",
+	"parks",
+	"theatres",
+	"museums",
+	"malls",
+	"zoo",
+	"restaurants",
+	"pubs_bars",
+	"local_services",
+	"burger_pizza_shops",
+	"hotels_other_lodgings",
+	"juice_bars",
+	"art_galleries",
+	"dance_clubs",
+	"swimming_pools",
+	"gyms",
+	"bakeries",
+	"beauty_spas",
+	"cafes",
+	"view_points",
+	"monuments",
+	"gardens"
+]
 
-	# a list of all user interests
-	intrests = [
-		"churches",
-		"resorts",
-		"beaches",
-		"parks",
-		"theatres",
-		"museums",
-		"malls",
-		"zoo",
-		"restaurants",
-		"pubs_bars",
-		"local_services",
-		"burger_pizza_shops",
-		"hotels_other_lodgings",
-		"juice_bars",
-		"art_galleries",
-		"dance_clubs",
-		"swimming_pools",
-		"gyms",
-		"bakeries",
-		"beauty_spas",
-		"cafes",
-		"view_points",
-		"monuments",
-		"gardens"
-	]
+
+
+# error for user not present/ not in database
+class NoIntrest(Exception):
+    def __init__(self, value, message):
+        self.value = value
+        self.message = message
+        super().__init__(message)
+
 
 
 # user registration schema
@@ -75,7 +82,7 @@ class Registration(BaseModel):
 			raise ValueError("Password should have 8 or more characters")
 		return value
 
-
+# user signin
 @dataclass
 class UserSignin(BaseModel):
 	

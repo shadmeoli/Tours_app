@@ -28,35 +28,10 @@ MDScreen:
                 color: 1, 1, 1, 1
                 pos_hint: {"center_x": .55, "center_y": .5}
 
-        MDIconButton:
-            icon: "arrow-left"
-            pos_hint: {'center_x': .1, 'center_y': .05}
-            user_font_size: "30sp"
-            theme_text_color: "Custom"
-            # color: '#00D47E'
-            on_release:
-                root.manager.transition.direction = "right"
-                root.manager.current="signup"
-            canvas.before:
-                Color:
-                    rgb: rgba(0, 212, 126, 1)
-
-        MDIconButton:
-            icon: "arrow-right"
-            pos_hint: {'center_x': .9, 'center_y': .05}
-            user_font_size: "30sp"
-            theme_text_color: "Custom"
-            # color: '#00D47E'
-            on_release:
-                print("{'instrest' : '[sfg, asdg, asfg, dfg]'}")
-                root.manager.transition.direction = "left"
-                root.manager.current="homepage"
-            canvas.before:
-                Color:
-                    rgb: rgba(0, 212, 126, 1)
 
 
         MDTextField:
+            id: interests 
             mode: "fill"
             md_bg_color: '#D9D9D9'
             size_hint: .9, .1
@@ -119,3 +94,29 @@ MDScreen:
 
 			# Image:
 			# 	source: 'assets/urban.jpg'
+
+
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {'center_x': .1, 'center_y': .05}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            # color: '#00D47E'
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current="signup"
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 212, 126, 1)
+
+        MDIconButton:
+            icon: "arrow-right"
+            pos_hint: {'center_x': .9, 'center_y': .05}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            # color: '#00D47E'
+            on_release:
+                if app.intrests(interests.text) == True: root.manager.current="homepage"
+            canvas.before:
+                Color:
+                    rgb: rgba(0, 212, 126, 1)
